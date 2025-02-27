@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      main {
+        margin: 24px 0;
+      }
+
+      div.container {
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        gap: 24px;
+
+        height: 100%;
+      }
+
+      h1.title {
+        font-size: 48px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      div.svg-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        gap: 8px;
+      }
+
+      h2.svg-title {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      p.svg-animation-description {
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      /* 예제에서 infinite 애니메이션을 보여주기 위하여 80%와 100%에 같은 속성을 준다. */
+      @keyframes draw-animation {
+        80% {
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes draw-fill-animation {
+        0% {
+          fill-opacity: 0;
+        }
+        80% {
+          stroke-dashoffset: 0;
+          fill-opacity: 0.5;
+        }
+        100% {
+          stroke-dashoffset: 0;
+          fill-opacity: 0.5;
+        }
+      }
+
+      @keyframes circle-animation {
+        0% {
+          scale: 0.9;
+          transform: translate3D(5%, 5%, 0);
+        }
+        50% {
+          scale: 1;
+          transform: translate3D(0, 0, 0);
+        }
+        100% {
+          scale: 0.9;
+          transform: translate3D(5%, 5%, 0);
+        }
+      }
+
+      svg#heart {
+        width: 100px;
+        height: 100px;
+      }
+
+      svg#heart path {
+        stroke-dasharray: 114;
+        stroke-dashoffset: 114;
+        animation: draw-animation linear 5s infinite;
+      }
+
+      svg#kebab {
+        width: 64px;
+        height: 64px;
+      }
+
+      svg#kebab circle {
+        animation: circle-animation cubic-bezier(0.175, 0.885, 0.32, 1.275) 4.5s infinite;
+
+        &:nth-child(1) {
+          animation-delay: 0s;
+        }
+
+        &:nth-child(2) {
+          animation-delay: 0.5s;
+        }
+        &:nth-child(3) {
+          animation-delay: 1s;
+        }
+      }
+
+      svg#github-polygon-graph {
+        display: block;
+        margin: 0 auto;
+      }
+
+      svg#github-polygon-graph line.activity-overview-axis,
+      .activity-overview-point {
+        stroke: #39d353;
+      }
+
+      svg#github-polygon-graph text.activity-overview-percentage,
+      .activity-overview-label {
+        font-size: 12px;
+        fill: #9198a1;
+      }
+
+      svg#github-polygon-graph path {
+        stroke-dasharray: 230.54034423828125;
+        stroke-dashoffset: 230.54034423828125;
+        animation: draw-fill-animation linear 3s infinite;
+      }
+
+      svg#line-chart {
+        stroke-dashoffset: 1103.0550537109375;
+        stroke-dasharray: 1103.0550537109375;
+
+        animation: draw-animation linear 5s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="title">SVG Animation</h1>
+      <div class="container">
+        <!-- MARK: heart animation -->
+        <div class="svg-wrapper">
+          <h2 class="svg-title">line drawing animation</h2>
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="heart">
+            <title>heart icon with a line drawing animation</title>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M18.3924 5.79256C17.8947 5.58892 17.3614 5.48645 16.8236 5.49112C16.2859 5.49579 15.7544 5.60752 15.2603 5.81977C14.7662 6.03203 14.3193 6.34057 13.9457 6.72738L13.9364 6.73699L12.53 8.14211C12.2371 8.4347 11.7626 8.4347 11.4697 8.14211L10.0633 6.73691C9.30386 5.97765 8.27377 5.55097 7.19985 5.55097C6.12601 5.55097 5.09614 5.97744 4.33666 6.7366C3.57751 7.49607 3.15088 8.52611 3.15088 9.59995C3.15088 10.6738 3.57739 11.7038 4.33662 12.4633C4.33661 12.4632 4.33664 12.4633 4.33662 12.4633L11.9999 20.1276L19.6723 12.454C20.0592 12.0804 20.3678 11.6336 20.58 11.1395C20.7923 10.6454 20.904 10.1139 20.9087 9.57616C20.9134 9.0384 20.8109 8.5051 20.6072 8.00737C20.4036 7.50964 20.1029 7.05745 19.7226 6.67718C19.3424 6.29692 18.8902 5.99619 18.3924 5.79256ZM16.8106 3.99118C17.5475 3.98477 18.2784 4.1252 18.9604 4.40426C19.6425 4.68331 20.2622 5.09542 20.7833 5.61652C21.3044 6.13763 21.7165 6.7573 21.9955 7.43937C22.2746 8.12145 22.415 8.85227 22.4086 9.58919C22.4022 10.3261 22.2491 11.0544 21.9582 11.7315C21.6683 12.4066 21.2472 13.0173 20.7194 13.5283L12.5302 21.7186C12.3896 21.8593 12.1988 21.9383 11.9999 21.9383C11.8009 21.9383 11.6101 21.8593 11.4695 21.7186L3.27588 13.5238C2.23542 12.4831 1.65088 11.0716 1.65088 9.59995C1.65088 8.12829 2.23538 6.71688 3.27584 5.6761C4.31662 4.63564 5.72819 4.05097 7.19985 4.05097C8.67144 4.05097 10.0828 4.63542 11.1236 5.67579C11.1235 5.67574 11.1236 5.67584 11.1236 5.67579L11.9999 6.55134L12.8716 5.68033C13.3826 5.15259 13.9933 4.73151 14.6683 4.44155C15.3454 4.15068 16.0737 3.99758 16.8106 3.99118Z"
+              style="fill: none; stroke: #1d263a; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1px"
+            />
+            <!-- style="fill: none; stroke: #1d263a; stroke-linecap: round; stroke-miterlimit: 10; stroke-width: 1px"  -->
+          </svg>
+          <p class="svg-animation-description">linear 5s infinite</p>
+        </div>
+        <!-- MARK: kebab animation -->
+        <div class="svg-wrapper">
+          <h2 class="svg-title">circle animation</h2>
+          <svg width="2" height="10" viewBox="0 0 2 10" fill="none" xmlns="http://www.w3.org/2000/svg" id="kebab">
+            <title>kebab icon with a bouncing animation</title>
+            <circle cx="1" cy="1" r="1" fill="#0F6EFB" />
+            <circle cx="1" cy="5" r="1" fill="#0F6EFB" />
+            <circle cx="1" cy="9" r="1" fill="#0F6EFB" />
+          </svg>
+          <p class="svg-animation-description">cubic-bezier(0.175, 0.885, 0.32, 1.275) 4.5s infinite</p>
+        </div>
+      </div>
+      <!-- MARK: github polygon graph -->
+      <div class="svg-wrapper">
+        <h2 class="svg-title">github polygon graph</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="243" id="github-polygon-graph">
+          <title>
+            A graph representing 99mini's contributions from February 25, 2024 to February 27, 2025. The contributions are 54% commits, 27% pull requests, 10% code review, 9%
+            issues.
+          </title>
+          <g transform="translate(-10, -47.7421875)">
+            <path
+              class="js-highlight-blob"
+              stroke-linejoin="round"
+              fill="#40c463"
+              stroke="#40c463"
+              opacity="0.5"
+              stroke-width="7"
+              d="M169.5,157.52633101851853 L179.87630208333331,169.5 L169.5,208.62890625 L87.2421875,169.5 z"
+            ></path>
+            <line stroke-width="2" stroke-linecap="round" class="activity-overview-axis" x1="83.2421875" y1="169.5" x2="255.7578125" y2="169.5"></line>
+            <line stroke-width="2" stroke-linecap="round" class="activity-overview-axis" x1="169.5" y1="83.2421875" x2="169.5" y2="255.7578125"></line>
+            <ellipse class="activity-overview-point" rx="3" ry="3" stroke-width="2" fill="white" cx="169.5" cy="155.52633101851853"></ellipse>
+            <ellipse class="activity-overview-point" rx="3" ry="3" stroke-width="2" fill="white" cx="181.87630208333331" cy="169.5"></ellipse>
+            <ellipse class="activity-overview-point" rx="3" ry="3" stroke-width="2" fill="white" cx="169.5" cy="210.62890625"></ellipse>
+            <ellipse class="activity-overview-point" rx="3" ry="3" stroke-width="2" fill="white" cx="85.2421875" cy="169.5"></ellipse>
+            <text text-anchor="middle" class="activity-overview-percentage" dx="169.5" dy="59.2421875">10%</text>
+            <text text-anchor="middle" class="text-small activity-overview-label" dx="169.5" dy="73.2421875">Code review</text>
+            <text text-anchor="start" class="activity-overview-percentage" dy="168.5" dx="274.28125">9%</text>
+            <text text-anchor="start" class="text-small activity-overview-label" dy="182.5" dx="265.7578125">Issues</text>
+            <text text-anchor="middle" class="activity-overview-percentage" dx="169.5" dy="273.7578125">27%</text>
+            <text text-anchor="middle" class="text-small activity-overview-label" dx="169.5" dy="287.7578125">Pull requests</text>
+            <text text-anchor="end" class="activity-overview-percentage" dy="168.5" dx="59.33984375">54%</text>
+            <text text-anchor="end" class="text-small activity-overview-label" dy="182.5" dx="71.2421875">Commits</text>
+          </g>
+        </svg>
+        <p class="svg-animation-description">linear 3s infinite</p>
+      </div>
+      <!-- MARK: line chart -->
+      <div class="svg-wrapper">
+        <h2 class="svg-title">Simple Line Chart</h2>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 900 600"
+          width="300"
+          height="200"
+          style="border-bottom: 1px solid #000; border-right: 1px solid #000; padding: 0 4px 4px 0"
+          id="line-chart"
+        >
+          <title>simple line chart with line drawing animation</title>
+          <path
+            class="line"
+            d="M0 482L25 500C50 518 100 554 150 519.7C200 485.3 250 380.7 300 371.2C350 361.7 400 447.3 450 466.7C500 486 550 439 600 436.2C650 433.3 700 474.7 750 457.2C800 439.7 850 363.3 875 325.2L900 287"
+            fill="none"
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+            stroke="#000"
+            stroke-width="18"
+          />
+        </svg>
+        <p class="svg-animation-description">linear 5s infinite</p>
+      </div>
+    </main>
+  </body>
+  <script>
+    /**
+     * @description SVG Path의 길이를 반환하는 함수
+     * @param {string} selector - SVG Path의 selector
+     * @returns {number} SVG Path의 길이
+     * @example
+     * ```javascript
+     * const pathLength = getPathLength('#heart path');
+     * console.log(pathLength); // 114
+     * ```
+     * */
+    const getPathLength = (selector) => {
+      const path = document.querySelector(selector);
+      const pathLength = path.getTotalLength();
+
+      return pathLength;
+    };
+  </script>
+</html>
